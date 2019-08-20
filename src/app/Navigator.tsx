@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 import Login from './pages/auth/login/LoginPage';
 import Register from './pages/auth/register/RegisterPage';
-import Tabs from './pages/tabs/Tabs';
+import TabPage from './pages/tabs/TabPage';
 
 
 // pages
@@ -21,7 +21,7 @@ const AuthNavigator = createStackNavigator(
     },
   }, {
     initialRouteName: "Login",
-    headerMode:"none"
+    headerMode: "none"
   }
 )
 
@@ -31,10 +31,10 @@ const AppNavigator = createSwitchNavigator(
       screen: AuthNavigator
     },
     Tabs: {
-      screen: Tabs
+      screen: TabPage
     }
   }, {
-    initialRouteName: "Auth",
+    initialRouteName: "Tabs",
   });
 
 const AppContainer = createAppContainer(AppNavigator);
