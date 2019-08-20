@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "151523474966",
+    "firebase_url": "https://talkee-bcd7c.firebaseio.com",
+    "project_id": "talkee-bcd7c",
+    "storage_bucket": "talkee-bcd7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151523474966:android:3ec8bf88c50d2bce",
+        "android_client_info": {
+          "package_name": "io.acerbastimur.talkawhile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151523474966-ghk32afb70u1elaacfp5r456g1uho465.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.acerbastimur.talkawhile",
+            "certificate_hash": "650e2fcfc8968f7d683295eec6734fca4be3b442"
+          }
+        },
+        {
+          "client_id": "151523474966-rqeghatijk2vdlqsamfnr8utsu3ekdig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2pt0OM03km4TrBZn-VQue9visHr6APY8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151523474966-rqeghatijk2vdlqsamfnr8utsu3ekdig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-4707193575973033~7153628452"
+    }
+  ],
+  "configuration_version": "1"
+}
