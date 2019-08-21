@@ -27,7 +27,6 @@ export default class Header extends React.PureComponent<HeaderProps, any> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.11,
     flexDirection: "column",
     width: "100%",
     marginTop: 30
