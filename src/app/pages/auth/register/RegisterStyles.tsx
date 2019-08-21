@@ -9,9 +9,9 @@ const RegisterStyles = StyleSheet.create({
     color: "white",
     fontSize: 28,
     textAlign: "center",
+    fontFamily: "Exo-Bold",
     marginTop: 60,
-    marginBottom: 40,
-    fontFamily: "Exo-Bold"
+    marginBottom: 40
   },
   inputLabel: {
     lineHeight: 14,
