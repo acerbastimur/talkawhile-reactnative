@@ -29,12 +29,14 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     width: "100%",
-    marginTop: 30
+    marginTop: 30,
   }, flag: {
     width: 50,
     height: 50,
     borderRadius: 100,
-    marginRight: 40
+    marginRight: 40,
+
+
   },
 
   text: {

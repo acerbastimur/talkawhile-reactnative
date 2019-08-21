@@ -9,11 +9,11 @@ export interface LearnPageProps {
 
 export default class LearnPage extends React.PureComponent<LearnPageProps, any> {
   data = [
-    { id: "0", text: 'View' },
-    { id: "1", text: 'Text' },
-    { id: "2", text: 'Image' },
-    { id: "3", text: 'ScrollView' },
-    { id: "4", text: 'ListView' },
+    { id: "0", text: 'To Be', imagePath: require('../../../../assets/images/learn/category0.png') },
+    { id: "1", text: 'Animals', imagePath: require('../../../../assets/images/learn/category1.png') },
+    { id: "2", text: 'School', imagePath: require('../../../../assets/images/learn/category2.png') },
+    { id: "3", text: 'Cars', imagePath: require('../../../../assets/images/learn/category3.png') },
+    { id: "4", text: 'Animals', imagePath: require('../../../../assets/images/learn/category4.jpg') },
   ]
 
 
@@ -26,8 +26,9 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
       <View style={LearnStyles.pageContainer}>
         <Header />
         <FlatList
+          style={{ marginTop: 20 }}
           data={this.data}
-          renderItem={() => (<LearningCard />)}
+          renderItem={({ item }) => (<LearningCard cardImage={item.imagePath} cardName={item.text} />)}
           keyExtractor={item => item.id} />
       </View>
     );

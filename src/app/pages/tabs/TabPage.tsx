@@ -29,6 +29,7 @@ export default class TabPage extends React.PureComponent<TabPageProps, any> {
           title="Tab2"
         >
           <LearnPage />
+
         </TabBar.Item>
         <TabBar.Item
           icon={require('../../../assets/images/tabs/profile.png')}
