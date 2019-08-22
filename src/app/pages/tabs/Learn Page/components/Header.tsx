@@ -12,14 +12,31 @@ export default class Header extends React.PureComponent<HeaderProps, any> {
   public render() {
     return (
       <View style={styles.container}>
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: 'center', }}>
+        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: 'center', marginBottom: 10 }}>
           <Image
             style={styles.flag}
             source={require('../../../../../assets/images/flag.png')}
           />
           <Text style={styles.text}>Select a Category</Text>
         </View>
+        <View
+          style={{
+            height: 1,
+            width: "100%",
+            backgroundColor: "#CED0CE",
+            opacity: 1,
+            marginTop: 10,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
 
+            elevation: 5
+          }}
+        />
       </View>
     );
   }
@@ -35,8 +52,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 100,
     marginRight: 40,
-
-
   },
 
   text: {

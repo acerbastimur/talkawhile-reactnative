@@ -20,16 +20,43 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
   constructor(props: LearnPageProps) {
     super(props);
   }
-
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "86%",
+          backgroundColor: "#CED0CE",
+          marginLeft: "14%",
+          opacity: 0.2
+        }}
+      />
+    );
+  };
+  headerSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 1,
+          width: "100%",
+          backgroundColor: "#CED0CE",
+          opacity: 0.4,
+          marginTop: 10
+        }}
+      />
+    );
+  };
   public render() {
     return (
       <View style={LearnStyles.pageContainer}>
         <Header />
         <FlatList
-          style={{ marginTop: 20 }}
           data={this.data}
           renderItem={({ item }) => (<LearningCard cardImage={item.imagePath} cardName={item.text} />)}
-          keyExtractor={item => item.id} />
+          keyExtractor={item => item.id}
+          ItemSeparatorComponent={this.renderSeparator}
+
+        />
       </View>
     );
   }
