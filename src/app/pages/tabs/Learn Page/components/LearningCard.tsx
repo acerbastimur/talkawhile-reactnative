@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity, } from 'react-native';
+import { Function } from '@babel/types';
 
 export interface LearningCardProps {
   cardImage: any;
@@ -15,7 +16,7 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
 
   public render() {
     return (
-      <TouchableOpacity style={styles.container} >
+      <TouchableOpacity style={styles.container}   >
 
         <Image
           source={this.props.cardImage} style={{ width: 120, height: 120, borderRadius: 20, marginHorizontal: 20, resizeMode: "cover", }} />

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
+import { View, StyleSheet, Text, FlatList, TouchableOpacity } from 'react-native';
 import LearnStyles from './LearnStyles';
 import Header from './components/Header';
 import LearningCard from './components/LearningCard';
+import SemiModal from '../../../common-components/SemiModal';
 
 export interface LearnPageProps {
 }
@@ -16,7 +17,6 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
     { id: "4", text: 'Animals', imagePath: require('../../../../assets/images/learn/category4.jpg') },
   ]
 
-
   constructor(props: LearnPageProps) {
     super(props);
   }
@@ -24,11 +24,11 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
     return (
       <View
         style={{
-          height: 1,
+          height: 1.5,
           width: "86%",
           backgroundColor: "#CED0CE",
           marginLeft: "14%",
-          opacity: 0.2
+          opacity: 1
         }}
       />
     );
@@ -57,7 +57,9 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
           ItemSeparatorComponent={this.renderSeparator}
 
         />
+
       </View>
+
     );
   }
 }
