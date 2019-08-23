@@ -55,7 +55,7 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
           renderItem={({ item }) => (<LearningCard cardImage={item.imagePath} cardName={item.text} />)}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={this.renderSeparator}
-
+          style={{ height: '92%' }}
         />
 
       </View>

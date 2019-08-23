@@ -12,7 +12,7 @@ export default class Header extends React.PureComponent<HeaderProps, any> {
   public render() {
     return (
       <View style={styles.container}>
-        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: 'center', marginBottom: 10 }}>
+        <View style={{ flexDirection: "row", alignItems: "center", justifyContent: 'center', }}>
           <Image
             style={styles.flag}
             source={require('../../../../../assets/images/flag.png')}
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     width: "100%",
-    marginTop: 30,
+    marginTop: 10,
   }, flag: {
     width: 50,
     height: 50,

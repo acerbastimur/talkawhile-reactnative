@@ -8,9 +8,6 @@ export interface SemiModalContainerProps {
 export default class SemiModalContainer extends React.PureComponent<SemiModalContainerProps, any> {
   constructor(props: SemiModalContainerProps) {
     super(props);
-    setTimeout(() => {
-      this.modalOpen()
-    }, 1000);
   }
   state = {
     isVisible: false
