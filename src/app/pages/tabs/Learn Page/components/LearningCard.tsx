@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity, } from 'react-native';
 import { Function } from '@babel/types';
-
+import ModalStore from '../../../../stores/ModalStore';
 export interface LearningCardProps {
   cardImage: any;
   cardName: string;
 }
-
-
 export default class LearningCard extends React.PureComponent<LearningCardProps, any> {
   constructor(props: LearningCardProps) {
     super(props);
@@ -16,7 +14,7 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
 
   public render() {
     return (
-      <TouchableOpacity style={styles.container}   >
+      <View style={styles.container}   >
 
         <Image
           source={this.props.cardImage} style={{ width: 120, height: 120, borderRadius: 20, marginHorizontal: 20, resizeMode: "cover", }} />
@@ -47,7 +45,7 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
           <Image style={{ width: 50, height: 50 }}
             source={require('../../../../../assets/images/learn/speak.png')} />
         </View>
-      </TouchableOpacity>
+      </View>
     );
   }
 }

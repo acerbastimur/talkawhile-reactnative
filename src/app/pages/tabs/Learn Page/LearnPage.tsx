@@ -4,6 +4,7 @@ import LearnStyles from './LearnStyles';
 import Header from './components/Header';
 import LearningCard from './components/LearningCard';
 import SemiModal from '../../../common-components/SemiModal';
+import ModalStore from '../../../stores/ModalStore';
 
 export interface LearnPageProps {
 }
@@ -52,7 +53,12 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
         <Header />
         <FlatList
           data={this.data}
-          renderItem={({ item }) => (<LearningCard cardImage={item.imagePath} cardName={item.text} />)}
+          renderItem={({ item }) => (<TouchableOpacity onPress={() => {
+            console.log("touceh")
+            ModalStore.openModal()
+          }}>
+            <LearningCard cardImage={item.imagePath} cardName={item.text} />
+          </TouchableOpacity>)}
           keyExtractor={item => item.id}
           ItemSeparatorComponent={this.renderSeparator}
           style={{ height: '92%' }}

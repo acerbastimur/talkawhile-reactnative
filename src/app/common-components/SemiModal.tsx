@@ -35,7 +35,8 @@ const MODAL_BG_CLOSE_DURATION = 50;
 const styles = StyleSheet.create({
   modal: {
     width: '100%',
-    borderRadius: 16,
+    borderTopEndRadius: 16,
+    borderTopStartRadius: 16,
   },
   modalBackground: {
     position: 'absolute',
@@ -72,7 +73,7 @@ export default class SemiModal extends Component<Props, State> {
     this.panResponder = PanResponder.create({
 
       onMoveShouldSetPanResponderCapture: (evt, gestureState) =>
-        gestureState.dx !== 0 && gestureState.dy !== 0,
+        gestureState.dx !== 0 && gestureState.dy !== 0 && gestureState.dy > 0,
 
       onPanResponderGrant: () => {
         this.state.modalPan.setValue({ x: 0, y: 0 });

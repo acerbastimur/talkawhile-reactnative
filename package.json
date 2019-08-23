@@ -8,6 +8,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "mobx": "^5.13.0",
+    "mobx-react": "^6.1.3",
     "native-base": "^2.13.5",
     "react": "16.8.6",
     "react-native": "0.60.5",
@@ -20,6 +22,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/runtime": "^7.5.5",
     "@react-native-community/eslint-config": "^0.0.5",
     "@types/jest": "^24.0.18",

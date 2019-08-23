@@ -3,8 +3,7 @@ import { SafeAreaView, StyleSheet, Alert, Text, TouchableOpacity } from 'react-n
 
 import Navigator from './src/app/Navigator';
 import SemiModal from './src/app/common-components/SemiModal';
-import { View } from 'native-base';
-import SemiModalContainer from './src/app/common-components/SemiModalContainer';
+ import SemiModalContainer from './src/app/common-components/SemiModalContainer';
 
 class App extends React.Component {
 
