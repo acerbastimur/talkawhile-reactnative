@@ -13,18 +13,21 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
 
 
   public render() {
+    const { cardName, cardImage } = this.props;
     return (
       <View style={styles.container}   >
 
         <Image
-          source={this.props.cardImage} style={{ width: 120, height: 120, borderRadius: 20, marginHorizontal: 20, resizeMode: "cover", }} />
+          source={{ uri: this.props.cardImage }} style={{ width: 120, height: 120, borderRadius: 20, marginHorizontal: 20, resizeMode: "cover", }} />
         <View style={{ width: '40%', height: 120, flexDirection: "column" }}>
           <View style={{ flex: 0.5, flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
             <Text style={{
               color: "black",
               fontSize: 24,
-              fontFamily: "Exo-Bolds", marginRight: 10
-            }}>{this.props.cardName}</Text>
+              fontFamily: "Exo-Bolds",
+              marginRight: 10,
+              maxWidth: 120
+            }}>{cardName.charAt(0).toUpperCase() + cardName.slice(1)}</Text>
             <TouchableOpacity >
               <Image style={{ width: 22, height: 22, resizeMode: "contain" }} source={require('../../../../../assets/images/learn/lock.png')} />
             </TouchableOpacity>

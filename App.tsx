@@ -3,7 +3,8 @@ import { SafeAreaView, StyleSheet, Alert, Text, TouchableOpacity } from 'react-n
 
 import Navigator from './src/app/Navigator';
 import SemiModal from './src/app/common-components/SemiModal';
- import SemiModalContainer from './src/app/common-components/SemiModalContainer';
+import SemiModalContainer from './src/app/common-components/SemiModalContainer';
+import { observer } from 'mobx-react';
 
 class App extends React.Component {
 

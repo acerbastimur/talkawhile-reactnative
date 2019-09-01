@@ -24,22 +24,15 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
             <View style={[styles.bar, styles.rightBar]} />
           </View>
           <ScrollView style={{ marginBottom: 4, maxHeight: 300 }}>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Remove</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Mute</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Block</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Report</Text><Text style={[styles.modalText, { marginBottom: 16 }]}>Remove</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Mute</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Block</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Report</Text><Text style={[styles.modalText, { marginBottom: 16 }]}>Remove</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Mute</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Block</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Report</Text><Text style={[styles.modalText, { marginBottom: 16 }]}>Remove</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Mute</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Block</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Report</Text><Text style={[styles.modalText, { marginBottom: 16 }]}>Remove</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Mute</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Block</Text>
-            <Text style={[styles.modalText, { marginBottom: 16 }]}>Report</Text>
+            {
+              ModalStore.selectedCardsWordList && ModalStore.selectedCardsWordList.map((word, index) => {
+                return (
+                  <Text key={index} style={[styles.modalText, { marginBottom: 16 }]}>{
+                    word
+                  }</Text>
+                )
+              })
+            }
           </ScrollView>
         </View>
       </SemiModal>

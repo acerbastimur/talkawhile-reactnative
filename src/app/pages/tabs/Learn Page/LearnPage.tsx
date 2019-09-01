@@ -5,10 +5,13 @@ import Header from './components/Header';
 import LearningCard from './components/LearningCard';
 import SemiModal from '../../../common-components/SemiModal';
 import ModalStore from '../../../stores/ModalStore';
+import ContentStore from '../../../stores/ContentStore';
+import { observer } from 'mobx-react';
+
 
 export interface LearnPageProps {
 }
-
+@observer
 export default class LearnPage extends React.PureComponent<LearnPageProps, any> {
   data = [
     { id: "0", text: 'To Be', imagePath: require('../../../../assets/images/learn/category0.png') },
@@ -52,14 +55,17 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
       <View style={LearnStyles.pageContainer}>
         <Header />
         <FlatList
-          data={this.data}
-          renderItem={({ item }) => (<TouchableOpacity onPress={() => {
-            console.log("touceh")
-            ModalStore.openModal()
-          }}>
-            <LearningCard cardImage={item.imagePath} cardName={item.text} />
-          </TouchableOpacity>)}
-          keyExtractor={item => item.id}
+          data={ContentStore.content}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => {
+              console.log("touceh");
+              ModalStore.setWordList(item.wordList);
+              ModalStore.openModal();
+            }}>
+              <LearningCard cardImage={item.img} cardName={item.categoryName} />
+            </TouchableOpacity>
+          )}
+          keyExtractor={item => item.categoryId.toString()}
           ItemSeparatorComponent={this.renderSeparator}
           style={{ height: '92%' }}
         />
