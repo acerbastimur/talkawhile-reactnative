@@ -16,6 +16,7 @@ type Props = {
   style: Object,
   closeThreshold: number,
   backgroundColor: string,
+  disableTopScroll?: boolean
 };
 
 type State = {
@@ -55,6 +56,7 @@ export default class SemiModal extends Component<Props, State> {
     style: {},
     closeThreshold: 40,
     backgroundColor: '#00000000',
+    disableTopScroll: false
   };
 
   constructor(props: Props) {
@@ -79,12 +81,22 @@ export default class SemiModal extends Component<Props, State> {
         this.state.modalPan.setValue({ x: 0, y: 0 });
       },
 
-      onPanResponderMove: Animated.event([
+      onPanResponderMove: (e, gestureState) => {
+        // custom logic here
+        console.log(this.props.disableTopScroll, gestureState.dy);
+
+        if (gestureState.dy < 0 && this.props.disableTopScroll) {
+          return;
+        }
+        Animated.event([null, {
+          dy: this.state.modalPan.y,
+        }])(e, gestureState); // <<--- INVOKING HERE!
+      }, /* Animated.event([
         null,
         {
           dy: this.state.modalPan.y,
         },
-      ]),
+      ]), */
 
       onPanResponderRelease: (e, gestureState: GestureState) => {
         if (gestureState.moveY - gestureState.y0 > this.props.closeThreshold) {

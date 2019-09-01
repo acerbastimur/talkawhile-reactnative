@@ -15,7 +15,9 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
     return (
       <SemiModal isVisible={ModalStore.isModalActive} onModalClose={() => {
         ModalStore.closeModal()
-      }} style={styles.SemiModal}>
+      }} style={styles.SemiModal}
+        disableTopScroll
+      >
         <View>
           <View style={styles.modalInner}>
             <View style={[styles.bar, styles.leftBar]} />
