@@ -32,7 +32,7 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
           width: "86%",
           backgroundColor: "#CED0CE",
           marginLeft: "14%",
-          opacity: 1
+          opacity: 0.6
         }}
       />
     );
@@ -59,7 +59,7 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => {
               console.log("touceh");
-              ModalStore.setWordList(item.wordList);
+              ModalStore.setCard(item);
               ModalStore.openModal();
             }}>
               <LearningCard cardImage={item.img} cardName={item.categoryName} />

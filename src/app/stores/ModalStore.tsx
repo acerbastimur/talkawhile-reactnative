@@ -1,16 +1,17 @@
 import { observable, action, autorun, reaction, when } from 'mobx';
+import IContent from './../models/Content';
 
 class ModalStore {
   @observable isModalActive: boolean = false;
-  @observable selectedCardsWordList: Array<string> = null;
+  @observable selectedCardDetails: IContent = null;
   constructor() {
     console.log("store initialized");
 
   }
 
 
-  @action setWordList(wordList: Array<string>) {
-    this.selectedCardsWordList = wordList;
+  @action setCard(card: IContent) {
+    this.selectedCardDetails = card;
   }
 
   @action openModal() {

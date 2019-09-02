@@ -28,9 +28,6 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
               marginRight: 10,
               maxWidth: 120
             }}>{cardName.charAt(0).toUpperCase() + cardName.slice(1)}</Text>
-            <TouchableOpacity >
-              <Image style={{ width: 22, height: 22, resizeMode: "contain" }} source={require('../../../../../assets/images/learn/lock.png')} />
-            </TouchableOpacity>
           </View>
           <View style={{ flex: 0.5, flexDirection: "column", }}>
             <View style={{ flexDirection: "row", alignItems: "center", }}>
