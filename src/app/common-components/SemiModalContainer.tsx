@@ -7,6 +7,10 @@ export interface SemiModalContainerProps {
 }
 @observer
 export default class SemiModalContainer extends React.PureComponent<SemiModalContainerProps, any> {
+  scroll: any;
+  goToTop = () => {
+    this.scroll.scrollTo({ x: 0, y: 0, animated: true });
+  }
   constructor(props: SemiModalContainerProps) {
     super(props);
   }
@@ -26,20 +30,28 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
           <View style={{ flex: 0.2, flexDirection: "row" }}>
             <View style={{ flex: 0.25, height: 70, justifyContent: "center", alignItems: "center", borderRadius: 20, }}>
               <Image
-                source={{ uri: ModalStore.selectedCardDetails && ModalStore.selectedCardDetails.img }} style={{ width: 70, height: 70, marginHorizontal: 20, resizeMode: "cover", }} />
+                source={{ uri: ModalStore.selectedCardDetails && ModalStore.selectedCardDetails.img }} style={{ width: 70, height: 70, marginHorizontal: 20, borderRadius: 20, resizeMode: "cover", }} />
             </View>
             <View style={{ flex: 0.75, height: 80, flexDirection: "column" }}>
-              <Text style={{
-                color: "#333333", fontSize: 24, fontFamily: "Exo-Bold"
-              }}>{ModalStore.selectedCardDetails && ModalStore.selectedCardDetails.categoryName.charAt(0).toUpperCase() + ModalStore.selectedCardDetails.categoryName.slice(1)}</Text>
-              <View style={{ flexDirection: "row" }}>
+              <View style={{ flexDirection: "column", flex: 0.3, }}>
                 <Text style={{
-                  color: "#DBDBDB", fontSize: 14, fontFamily: "Exo-Medium"
+                  color: "#333333", fontSize: 24, fontFamily: "Exo-Bold"
                 }}>{ModalStore.selectedCardDetails && ModalStore.selectedCardDetails.categoryName.charAt(0).toUpperCase() + ModalStore.selectedCardDetails.categoryName.slice(1)}</Text>
-                <Image
-                  source={require("../../assets/images/learn/flame.png")} style={{ width: 13, height: 17, marginLeft: 4, resizeMode: "cover", }} />
-
+                <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+                  <Text style={{
+                    color: "#DBDBDB", fontSize: 24, fontFamily: "Exo-Medium",
+                  }}>12</Text>
+                  <Image
+                    source={require("../../assets/images/learn/flame.png")} style={{ width: 16, height: 22, marginLeft: 4, marginTop: 6, resizeMode: "cover", }} />
+                </View>
               </View>
+              <View style={{ alignSelf: "flex-end", marginHorizontal: 20, marginVertical: 10 }}>
+                <TouchableOpacity style={{ flexDirection: "column", alignItems: "center", }}>
+                  <Image style={{ width: 60, height: 60, borderRadius: 100 }}
+                    source={require('../../assets/images/learn/speak.png')} />
+                </TouchableOpacity>
+              </View>
+
             </View>
           </View>
           <View style={{ marginBottom: 4, maxHeight: 250, marginTop: 80, paddingBottom: 6 }}>
@@ -47,7 +59,8 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
               color: "#DBDBDB", fontSize: 22, fontFamily: "Exo-Bold", marginBottom: 6
             }}>Phrase List</Text>
             <View style={{ width: '100%', flexDirection: "row", paddingBottom: 6 }}>
-              <ScrollView style={{ flex: 0.7, paddingBottom: 6 }}>
+              <ScrollView style={{ flex: 1, paddingBottom: 6 }} ref={(c) => { this.scroll = c }}
+                onContentSizeChange={() => { this.goToTop() }}>
                 {
                   ModalStore.selectedCardDetails && ModalStore.selectedCardDetails.wordList.map((word, index) => {
                     return (
@@ -62,21 +75,13 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
                           }}>23</Text>
                           <Image
                             source={require("../../assets/images/learn/flame.png")} style={{ width: 14, height: 22, resizeMode: "contain", }} />
-
                         </View>
-
-
-
                       </View>
-
                     )
                   })
                 }
               </ScrollView>
-              <TouchableOpacity style={{ flex: 0.3, flexDirection: "column", justifyContent: 'flex-end', alignItems: "center", padding: 18 }}>
-                <Image style={{ width: 60, height: 60, borderRadius: 100 }}
-                  source={require('../../assets/images/learn/speak.png')} />
-              </TouchableOpacity>
+
             </View>
 
           </View>
@@ -121,7 +126,7 @@ const styles = StyleSheet.create({
   },
   SemiModal: {
     paddingVertical: 24,
-    paddingLeft: 24,
+    paddingHorizontal: 24,
     paddingTop: 8,
     maxHeight: 400,
     backgroundColor: '#A560EB',
