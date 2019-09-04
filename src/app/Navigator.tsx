@@ -3,6 +3,7 @@ import { createStackNavigator, createAppContainer, createSwitchNavigator } from 
 import Login from './pages/auth/login/LoginPage';
 import Register from './pages/auth/register/RegisterPage';
 import TabPage from './pages/tabs/TabPage';
+import WatchComponent from './pages/watch/WatchPage';
 
 
 // pages
@@ -32,9 +33,12 @@ const AppNavigator = createSwitchNavigator(
     },
     Tabs: {
       screen: TabPage
+    },
+    Watch: {
+      screen: WatchComponent
     }
   }, {
-    initialRouteName: "Tabs",
+    initialRouteName: "Watch",
   });
 
 const AppContainer = createAppContainer(AppNavigator);

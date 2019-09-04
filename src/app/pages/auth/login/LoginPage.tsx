@@ -47,7 +47,7 @@ export default class Login extends React.PureComponent<LoginProps, LoginState> {
             />
           </Item>
           <View style={LoginStyles.loginBtnContainer}>
-            <Button style={LoginStyles.loginBtn}>
+            <Button style={LoginStyles.loginBtn} onPress={() => this.props.navigation.navigate('Tabs')}>
               <Text style={LoginStyles.loginBtnText}> SIGN IN </Text>
             </Button>
           </View>

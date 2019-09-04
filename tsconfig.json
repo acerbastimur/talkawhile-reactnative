@@ -9,7 +9,10 @@
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
-    "target": "esnext"
+    "target": "esnext",
+    "resolveJsonModule": true,
+    
   },
+  "files": ["index.d.ts"],
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }
