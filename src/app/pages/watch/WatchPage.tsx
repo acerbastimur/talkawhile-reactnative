@@ -25,10 +25,10 @@ export default class WatchComponent extends React.Component<WatchProps, WatchSta
 
     return (
       <View style={styles.container}>
-        <Video source={{ uri: url }}   // Can be a URL or a local file.
+        <Video source={{ uri: url }} 
           ref={(ref) => {
             this.player = ref
-          }}                                    // Callback when video cannot be loaded
+          }}                                
           style={styles.backgroundVideo} />
       </View>
     );
