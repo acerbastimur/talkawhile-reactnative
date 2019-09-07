@@ -7,12 +7,15 @@ import SemiModal from '../../../common-components/SemiModal';
 import ModalStore from '../../../stores/ModalStore';
 import ContentStore from '../../../stores/ContentStore';
 import { observer } from 'mobx-react';
+import RBSheet from "react-native-raw-bottom-sheet";
+import SemiModalContainer from '../../../common-components/SemiModalContainer';
 
 
 export interface LearnPageProps {
 }
 @observer
 export default class LearnPage extends React.PureComponent<LearnPageProps, any> {
+  RBSheet = null;
   data = [
     { id: "0", text: 'To Be', imagePath: require('../../../../assets/images/learn/category0.png') },
     { id: "1", text: 'Animals', imagePath: require('../../../../assets/images/learn/category1.png') },
@@ -53,6 +56,7 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
   public render() {
     return (
       <View style={LearnStyles.pageContainer}>
+        <SemiModalContainer />
         <Header />
         <FlatList
           data={ContentStore.content}
@@ -61,6 +65,7 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
               console.log("touceh");
               ModalStore.setCard(item);
               ModalStore.openModal();
+
             }}>
               <LearningCard cardImage={item.img} cardName={item.categoryName} />
             </TouchableOpacity>
