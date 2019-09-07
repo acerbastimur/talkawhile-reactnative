@@ -24,7 +24,6 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
         }}
         height={400}
         duration={400}
-        closeOnDragDown={true}
         customStyles={{
           container: {
             borderRadius: 12,
@@ -37,12 +36,34 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
         }}
       >
         <View>
-          <View style={styles.modalInner}>
-            <View style={[styles.bar, styles.leftBar]} />
-            <View style={[styles.bar, styles.rightBar]} />
+          <View style={{ height: 100, flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flex: 0.25, height: 70, justifyContent: "center", alignItems: "center", borderRadius: 20, }}>
+              <Image
+                source={{ uri: ModalStore.selectedCardDetails && ModalStore.selectedCardDetails.img }} style={{ width: 70, height: 70, marginHorizontal: 20, borderRadius: 20, resizeMode: "cover", }} />
+            </View>
+            <View style={{ flex: 0.50, height: 70, padding: 6 }}>
+              <View style={{ flexDirection: "column", }}>
+                <Text style={{
+                  color: "#333333", fontSize: 24, fontFamily: "Exo-Bold"
+                }}>{ModalStore.selectedCardDetails && ModalStore.selectedCardDetails.categoryName.charAt(0).toUpperCase() + ModalStore.selectedCardDetails.categoryName.slice(1)}</Text>
+                <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
+                  <Text style={{
+                    color: "#DBDBDB", fontSize: 24, fontFamily: "Exo-Medium",
+                  }}>12</Text>
+                  <Image
+                    source={require("../../assets/images/learn/flame.png")} style={{ width: 16, height: 22, marginLeft: 4, marginTop: 6, resizeMode: "cover", }} />
+                </View>
+              </View>
+            </View>
+            <View style={{ flex: 0.25 }}>
+              <TouchableOpacity style={{ flexDirection: "column", alignItems: "center", }}>
+                <Image style={{ width: 60, height: 60, borderRadius: 100 }}
+                  source={require('../../assets/images/learn/speak.png')} />
+              </TouchableOpacity>
+            </View>
           </View>
 
-          <View style={{ marginBottom: 4, maxHeight: 250, marginTop: 80, paddingBottom: 6 }}>
+          <View style={{ marginBottom: 4, maxHeight: 250, paddingBottom: 6 }}>
             <Text style={{
               color: "#DBDBDB", fontSize: 22, fontFamily: "Exo-Bold", marginBottom: 6
             }}>Phrase List</Text>
