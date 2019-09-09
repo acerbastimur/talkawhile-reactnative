@@ -140,6 +140,8 @@ export default class Watch extends React.Component<WatchProps, WatchState> {
               </View>
           )
       } */
+
+
     correctAnswerComponentContainerMid = () => {
         if (this.state.isListening) {
             return (

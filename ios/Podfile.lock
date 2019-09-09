@@ -121,8 +121,6 @@ PODS:
     - React-cxxreact (= 0.60.5)
     - React-jsi (= 0.60.5)
   - React-jsinspector (0.60.5)
-  - react-native-blur (0.8.0):
-    - React
   - react-native-orientation-locker (1.1.6):
     - React
   - react-native-video (5.0.0):
@@ -168,6 +166,8 @@ PODS:
     - React
   - RNSVG (9.6.4):
     - React
+  - SajjadBlurOverlay (1.0.0):
+    - React
   - yoga (0.60.5.React)
 
 DEPENDENCIES:
@@ -181,7 +181,6 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
-  - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
   - react-native-video (from `../node_modules/react-native-video`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -198,6 +197,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - SajjadBlurOverlay (from `../node_modules/react-native-blur-overlay/ios`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -238,8 +238,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
-  react-native-blur:
-    :path: "../node_modules/@react-native-community/blur"
   react-native-orientation-locker:
     :path: "../node_modules/react-native-orientation-locker"
   react-native-video:
@@ -272,6 +270,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  SajjadBlurOverlay:
+    :path: "../node_modules/react-native-blur-overlay/ios"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -300,7 +300,6 @@ SPEC CHECKSUMS:
   React-jsi: 4d8c9efb6312a9725b18d6fc818ffc103f60fec2
   React-jsiexecutor: 90ad2f9db09513fc763bc757fdc3c4ff8bde2a30
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
-  react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-orientation-locker: 23918c400376a7043e752c639c122fcf6bce8f1c
   react-native-video: 37a0a4628b985c080cfd7b0768457be84c8c3fd0
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
@@ -317,6 +316,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNReanimated: 1b52415c4302f198cb581282a0166690bad62c43
   RNSVG: a53a5de0d90ec96a6502cc3a4534dfcc0c130622
+  SajjadBlurOverlay: 4366a3417954b7d4a8a70682e0c43959ff76a3cb
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
 PODFILE CHECKSUM: bb2e905949866b56ba4f6d527b5a172e525f48a9

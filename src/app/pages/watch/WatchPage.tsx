@@ -4,13 +4,15 @@ import Video from 'react-native-video';
 import Orientation from 'react-native-orientation-locker';
 import Subtitle from './components/Subtitle';
 import Watch from './components/Watch';
+import ContentProvider from './schema/ContentProvider';
 
 export interface WatchProps {
 
 }
 
 export interface WatchState {
-  subtitle: string
+  subtitle: string,
+  showTalkDiaglog: boolean
 }
 
 export default class WatchComponent extends React.Component<WatchProps, WatchState> {
@@ -19,8 +21,12 @@ export default class WatchComponent extends React.Component<WatchProps, WatchSta
   constructor(props: WatchProps) {
     super(props);
     this.state = {
-      subtitle: "hello"
+      subtitle: "hello",
+      showTalkDiaglog: false
     };
+    const _ContentProvider = new ContentProvider();
+    _ContentProvider.getDataFromApi("watch");
+
   }
 
   componentDidMount() {
@@ -45,13 +51,16 @@ export default class WatchComponent extends React.Component<WatchProps, WatchSta
             this.player = ref
           }}
           resizeMode={"cover"}
-          style={styles.backgroundVideo} />
+          style={styles.backgroundVideo}
+          onEnd={() => { this.setState({ showTalkDiaglog: true }) }}
+        />
         <View style={{ zIndex: 6, position: "absolute", bottom: 20, width: '100%', height: 45, justifyContent: "center", alignItems: "center" }}>
-          <Subtitle subtitle="That doesn't matter at all!" />
+          <Subtitle subtitle={this.state.subtitle} />
         </View>
-        <View style={{ zIndex: 5, position: "absolute", width: '100%', height: '100%', justifyContent: "center", alignItems: "center" }}>
-          <Watch />
-        </View>
+        {this.state.showTalkDiaglog ?
+          <View style={{ zIndex: 5, position: "absolute", width: '100%', height: '100%', justifyContent: "center", alignItems: "center" }}>
+            <Watch />
+          </View> : null}
 
       </View>
     );
