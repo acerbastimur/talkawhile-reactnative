@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* talkawhileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* talkawhileTests.m */; };
 		07B290EB108A4CA2AFF73341 /* Exo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9688D03B06B54C2AA5B60B20 /* Exo-Black.ttf */; };

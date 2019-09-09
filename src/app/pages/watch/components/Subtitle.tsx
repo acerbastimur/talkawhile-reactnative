@@ -8,7 +8,7 @@ export interface SubtitleProps {
 export interface SubtitleState {
 }
 
-export default class SubtitleComponent extends React.Component<SubtitleProps, SubtitleState> {
+export default class Subtitle extends React.Component<SubtitleProps, SubtitleState> {
     public static defaultProps = {
     };
     constructor(props: SubtitleProps) {
@@ -22,9 +22,9 @@ export default class SubtitleComponent extends React.Component<SubtitleProps, Su
     public render() {
         return (
             <View style={styles.container}>
-                <View style={{ backgroundColor: '#5E5E5E', width: '100%', height: 45, zIndex: 1, opacity: 0.6, borderRadius: 6 }}>
+                <View style={{ backgroundColor: '#5E5E5E', width: '100%', height: 45, zIndex: 1, opacity: 0.6, borderRadius: 6 }}/>
 
-                </View>
+               
                 <View style={{ position: "absolute", zIndex: 2 }}>
                     <Text style={{
                         color: "white",

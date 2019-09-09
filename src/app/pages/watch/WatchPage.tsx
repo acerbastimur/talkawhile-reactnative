@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
 import Orientation from 'react-native-orientation-locker';
-import SubtitleComponent from './components/Subtitle';
+import Subtitle from './components/Subtitle';
+import Watch from './components/Watch';
 
 export interface WatchProps {
 
@@ -36,19 +37,22 @@ export default class WatchComponent extends React.Component<WatchProps, WatchSta
 
     return (
       <View style={styles.container}>
-        <View style={{ position: "absolute", top: 20, left: 20, zIndex: 2 }}>
+        <TouchableOpacity style={{ position: "absolute", top: 20, left: 20, zIndex: 6 }}>
           <Image source={require('../../../assets/images/watch/back.png')} style={{ width: 14, height: 24, }} />
-        </View>
+        </TouchableOpacity>
         <Video source={{ uri: url }}
           ref={(ref: any) => {
             this.player = ref
           }}
           resizeMode={"cover"}
           style={styles.backgroundVideo} />
-        <View style={{ zIndex: 5, position: "absolute", bottom: 20, width: '100%', height: 45, justifyContent: "center", alignItems: "center" }}>
-          <SubtitleComponent subtitle={this.state.subtitle} />
-
+        <View style={{ zIndex: 6, position: "absolute", bottom: 20, width: '100%', height: 45, justifyContent: "center", alignItems: "center" }}>
+          <Subtitle subtitle="That doesn't matter at all!" />
         </View>
+        <View style={{ zIndex: 5, position: "absolute", width: '100%', height: '100%', justifyContent: "center", alignItems: "center" }}>
+          <Watch />
+        </View>
+
       </View>
     );
   }
