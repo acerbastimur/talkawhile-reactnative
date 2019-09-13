@@ -2,8 +2,8 @@ import * as React from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import Video from 'react-native-video';
 import Orientation from 'react-native-orientation-locker';
-import Subtitle from './components/Subtitle';
-import Watch from './components/Watch';
+import Subtitle from './components/SubtitleComponent';
+import Watch from './components/WatchComponent';
 import ContentProvider from './schema/ContentProvider';
 
 export interface WatchProps {

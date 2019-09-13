@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
-import BlurOverlay, { closeOverlay, openOverlay } from 'react-native-blur-overlay';
-
+import Player from '../schema/Player';
 export interface WatchProps {
 }
 
@@ -132,15 +131,6 @@ export default class Watch extends React.Component<WatchProps, WatchState> {
         }
     }
 
-    /*   wrongAnswerComponent = () => {
-          return (
-              <View style={{ justifyContent: "center", alignItems: "center" }}>
-                  <Image source={require('../../../../assets/images/watch/sorry.png')} style={{ width: 150, height: 150 }} />
-                  {this.bottomButtonText("It didn't match!")}
-              </View>
-          )
-      } */
-
 
     correctAnswerComponentContainerMid = () => {
         if (this.state.isListening) {
@@ -174,6 +164,10 @@ export default class Watch extends React.Component<WatchProps, WatchState> {
         }
     }
 
+    componentDidMount() {
+        const _Player = new Player();
+        _Player.main();
+    }
     public render() {
         return (
             <View style={styles.container}>
