@@ -24,7 +24,7 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
             <Text style={{
               color: "black",
               fontSize: 22,
-              fontFamily: "Exo-Bolds",
+              fontFamily: "Exo-Bold",
               marginRight: 8,
               maxWidth: 200
             }}>{cardName.charAt(0).toUpperCase() + cardName.slice(1)}</Text>

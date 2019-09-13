@@ -4,6 +4,7 @@ import IContent from './../models/Content';
 class ModalStore {
   @observable isModalActive: boolean = false;
   @observable selectedCardDetails: IContent = null;
+  @observable modalRef = null;
   constructor() {
     console.log("store initialized");
 
@@ -17,13 +18,13 @@ class ModalStore {
   @action openModal() {
     console.log("open modal");
 
-    this.isModalActive = true;
+    this.modalRef.open();
   }
 
   @action closeModal() {
     console.log("close modal");
 
-    this.isModalActive = false;
+    this.modalRef.close();
   }
 }
 

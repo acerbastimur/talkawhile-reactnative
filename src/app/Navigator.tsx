@@ -21,9 +21,9 @@ const AuthNavigator = createStackNavigator(
       screen: Register
     },
   }, {
-    initialRouteName: "Login",
-    headerMode: "none"
-  }
+  initialRouteName: "Login",
+  headerMode: "none"
+}
 )
 
 const AppNavigator = createSwitchNavigator(
@@ -38,8 +38,8 @@ const AppNavigator = createSwitchNavigator(
       screen: WatchComponent
     }
   }, {
-    initialRouteName: "Watch",
-  });
+  initialRouteName: "Watch",
+});
 
 const AppContainer = createAppContainer(AppNavigator);
 
