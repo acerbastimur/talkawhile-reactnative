@@ -18,7 +18,7 @@ export default class Player {
         console.log(this.allWordsContents);
     }
 
-    async getAllWordsContents(): Promise<Playphrase[]> {
+    private async getAllWordsContents(): Promise<Playphrase[]> {
         const allWordsContent = this.content.wordList.map(async (word, index) => {
             const currentWord: string = this.content.wordList[index];
             const contents: Playphrase = await this.contentProvider.getDataFromApi(currentWord);
@@ -31,8 +31,15 @@ export default class Player {
         })
         return contents;
     }
-    increaseWordIndex() {
-        this.learningWordIndex++;
+
+
+    getCurrentVideoUrl(): string {
+        const currentPhrase = this.allWordsContents[this.learningWordIndex]
+        return currentPhrase.phrases[currentPhrase.lastWorked]["video-url"];
     }
 
+    getCurrentVideoSubtitle(): string {
+        const currentPhrase = this.allWordsContents[this.learningWordIndex]
+        return currentPhrase.phrases[currentPhrase.lastWorked].text;
+    }
 }
