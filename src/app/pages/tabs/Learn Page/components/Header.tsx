@@ -48,15 +48,15 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: 10,
   }, flag: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
     borderRadius: 100,
     marginRight: 40,
   },
 
   text: {
     color: "#333333",
-    fontSize: 28,
+    fontSize: 20,
     textAlign: "center",
     fontFamily: "Exo-Bold",
     marginRight: 10

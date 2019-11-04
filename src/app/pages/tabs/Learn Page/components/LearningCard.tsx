@@ -18,12 +18,12 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
       <View style={styles.container}   >
 
         <Image
-          source={{ uri: this.props.cardImage }} style={{ width: 90, height: 90, borderRadius: 20, marginHorizontal: 15, resizeMode: "cover", }} />
+          source={{ uri: this.props.cardImage }} style={{ width: 60, height: 60, borderRadius: 20, marginHorizontal: 15, resizeMode: "cover", }} />
         <View style={{ width: '40%', height: 90, flexDirection: "column" }}>
           <View style={{ flex: 0.5, flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
             <Text style={{
               color: "black",
-              fontSize: 22,
+              fontSize: 16,
               fontFamily: "Exo-Bold",
               marginRight: 8,
               maxWidth: 200
@@ -33,11 +33,11 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
             <View style={{ flexDirection: "row", alignItems: "center", }}>
               <Text style={{
                 color: "#FA811B",
-                fontSize: 16,
+                fontSize: 14,
                 textAlign: "center",
-                fontFamily: "Exo-Bold", marginRight: 8
+                fontFamily: "Exo-Bold", marginRight: 4
               }}>23</Text>
-              <Image source={require("../../../../../assets/images/learn/flame.png")} style={{ width: 18, height: 18, resizeMode: "contain" }} />
+              <Image source={require("../../../../../assets/images/learn/flame.png")} style={{ width: 14, height: 14, resizeMode: "contain" }} />
             </View>
           </View>
         </View>
@@ -54,7 +54,7 @@ export default class LearningCard extends React.PureComponent<LearningCardProps,
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: 90,
+    height: 80,
     margin: 8,
 
   }

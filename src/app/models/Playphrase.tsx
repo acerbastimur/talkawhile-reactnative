@@ -3,7 +3,6 @@ export interface Playphrase {
     phrases: PhrasesItem[];
     suggestions: SuggestionsItem[];
     'next-word-suggestion': string;
-    lastWorked?: number;
 }
 export interface PhrasesItem {
     'video-info': {
