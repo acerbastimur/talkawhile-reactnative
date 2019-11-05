@@ -1,19 +1,18 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
-import Player from '../schema/Player';
-import { passComponent, wordComponent, bottomButtonText, nextComponent, replayComponent, scoreComponent } from './WatchStaticSubcomponents';
-export interface WatchProps {
+ import { PassComponent, wordComponent, bottomButtonText, NextComponent, ReplayComponent, scoreComponent } from './WatchStaticSubcomponents';
+export interface WatchEndProps {
 }
 
-export interface WatchState {
+export interface WatchEndState {
     isListening: boolean;
     didMatch: boolean;
 }
 
-export default class Watch extends React.Component<WatchProps, WatchState> {
+export default class WatchEnd extends React.Component<WatchEndProps, WatchEndState> {
     public static defaultProps = {
     };
-    constructor(props: WatchProps) {
+    constructor(props: WatchEndProps) {
         super(props);
         this.state = {
             isListening: false,
@@ -41,9 +40,9 @@ export default class Watch extends React.Component<WatchProps, WatchState> {
             return scoreComponent();
         } else {
             if (this.state.didMatch === true) {
-                return nextComponent();
+                return (<NextComponent/>)
             } else if (this.state.didMatch === false) {
-                return replayComponent();
+                return (<ReplayComponent />)
             }
             return scoreComponent();
 
@@ -68,10 +67,10 @@ export default class Watch extends React.Component<WatchProps, WatchState> {
                 )
             } else if (this.state.didMatch === false) {
                 return (
-                    < TouchableOpacity onPress={this.toggleListening} style={{ justifyContent: "center", alignItems: "center" }}>
+                    < View style={{ justifyContent: "center", alignItems: "center" }}>
                         <Image source={require('../../../../assets/images/watch/sorry.png')} style={{ width: 150, height: 150 }} />
                         {bottomButtonText("It wasn't correct!")}
-                    </TouchableOpacity>)
+                    </View>)
             }
             return (
                 < TouchableOpacity onPress={this.toggleListening} style={{ justifyContent: "center", alignItems: "center" }}>
@@ -97,7 +96,7 @@ export default class Watch extends React.Component<WatchProps, WatchState> {
                 <View style={{ flex: 1, width: '100%', height: '100%', flexDirection: "row", position: "absolute", zIndex: 6 }}>
                     <View style={{ flex: 0.3333, justifyContent: "center", alignItems: "center" }}>
                         {
-                            !this.state.isListening && this.state.didMatch === false ? passComponent() : wordComponent()
+                            !this.state.isListening && this.state.didMatch === false ? (<PassComponent/>) : wordComponent()
                         }
                     </View>
                     <View style={{ flex: 0.3333, justifyContent: "center", alignItems: "center" }}>
