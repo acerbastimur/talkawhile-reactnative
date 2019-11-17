@@ -21,6 +21,7 @@
     "react-native-reanimated": "^1.2.0",
     "react-native-svg": "^9.6.4",
     "react-native-video": "^5.0.0",
+    "react-native-voice": "^0.3.0",
     "react-navigation": "^3.11.1"
   },
   "devDependencies": {

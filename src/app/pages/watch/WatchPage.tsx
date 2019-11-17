@@ -14,12 +14,12 @@ import ContentProvider from './schema/ContentProvider';
 import {Playphrase, PhrasesItem} from '../../models/Playphrase';
 import WatchEnd from './components/WatchEndComponent';
 import ContentStore from '../../stores/ContentStore';
-import { observer } from 'mobx-react'
+import {observer} from 'mobx-react';
 
 export interface WatchProps {}
 
 export interface WatchState {
-   areContentsLoaded: boolean;
+  areContentsLoaded: boolean;
   player_paused: boolean;
 }
 @observer
@@ -28,10 +28,10 @@ export default class WatchComponent extends React.Component<
   WatchState
 > {
   player: any;
-   constructor(props: WatchProps) {
+  constructor(props: WatchProps) {
     super(props);
     this.state = {
-       areContentsLoaded: false,
+      areContentsLoaded: false,
       player_paused: false,
     };
   }
@@ -42,8 +42,8 @@ export default class WatchComponent extends React.Component<
     await ContentStore.getAllPhrases();
     ContentStore.getRandomContent();
     this.setState({
-      areContentsLoaded:true
-    })
+      areContentsLoaded: true,
+    });
   }
 
   componentWillUnmount() {
@@ -54,7 +54,7 @@ export default class WatchComponent extends React.Component<
 
   public render() {
     console.log('rendered again');
-     return this.state.areContentsLoaded ? (
+    return this.state.areContentsLoaded ? (
       <View style={styles.container}>
         <TouchableOpacity
           style={{position: 'absolute', top: 20, left: 20, zIndex: 6}}>
@@ -64,18 +64,20 @@ export default class WatchComponent extends React.Component<
           />
         </TouchableOpacity>
         <Video
-          source={{uri: ContentStore.currentPhrase && ContentStore.currentPhrase["video-url"]}}
+          source={{
+            uri:
+              ContentStore.currentPhrase &&
+              ContentStore.currentPhrase['video-url'],
+          }}
           ref={(ref: any) => {
             this.player = ref;
           }}
           resizeMode={'cover'}
           style={styles.backgroundVideo}
           pasued={this.state.player_paused}
-          onLoad= {
-            ()=> {
-              ContentStore.toggleTalkDialog(false)
-            }
-          }
+          onLoad={() => {
+            ContentStore.toggleTalkDialog(false);
+          }}
           onEnd={() => {
             ContentStore.toggleTalkDialog(true);
             this.setState({player_paused: true});
@@ -92,7 +94,11 @@ export default class WatchComponent extends React.Component<
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Subtitle subtitle={ContentStore.currentPhrase && ContentStore.currentPhrase.text} />
+          <Subtitle
+            subtitle={
+              ContentStore.currentPhrase && ContentStore.currentPhrase.text
+            }
+          />
         </View>
         {ContentStore.showTalkDialog ? (
           <View

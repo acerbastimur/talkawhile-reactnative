@@ -121,12 +121,14 @@ PODS:
     - React-cxxreact (= 0.60.5)
     - React-jsi (= 0.60.5)
   - React-jsinspector (0.60.5)
-  - react-native-orientation-locker (1.1.6):
+  - react-native-orientation-locker (1.1.7):
     - React
-  - react-native-video (5.0.0):
+  - react-native-video (5.0.2):
     - React
-    - react-native-video/Video (= 5.0.0)
-  - react-native-video/Video (5.0.0):
+    - react-native-video/Video (= 5.0.2)
+  - react-native-video/Video (5.0.2):
+    - React
+  - react-native-voice (0.3.0):
     - React
   - React-RCTActionSheet (0.60.5):
     - React-Core (= 0.60.5)
@@ -183,6 +185,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-orientation-locker (from `../node_modules/react-native-orientation-locker`)
   - react-native-video (from `../node_modules/react-native-video`)
+  - react-native-voice (from `../node_modules/react-native-voice`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -201,7 +204,7 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - boost-for-react-native
     - Crashlytics
     - Fabric
@@ -242,6 +245,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-orientation-locker"
   react-native-video:
     :path: "../node_modules/react-native-video"
+  react-native-voice:
+    :path: "../node_modules/react-native-voice"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -300,8 +305,9 @@ SPEC CHECKSUMS:
   React-jsi: 4d8c9efb6312a9725b18d6fc818ffc103f60fec2
   React-jsiexecutor: 90ad2f9db09513fc763bc757fdc3c4ff8bde2a30
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
-  react-native-orientation-locker: 23918c400376a7043e752c639c122fcf6bce8f1c
-  react-native-video: 37a0a4628b985c080cfd7b0768457be84c8c3fd0
+  react-native-orientation-locker: ec7d590e2a52ae4abda5b5b79ce71e50ffcd52a5
+  react-native-video: d01ed7ff1e38fa7dcc6c15c94cf505e661b7bfd0
+  react-native-voice: 9829ac5dc9300687c5f215bddf6c9645e82923fc
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
   React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
   React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24
@@ -321,4 +327,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: bb2e905949866b56ba4f6d527b5a172e525f48a9
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3
