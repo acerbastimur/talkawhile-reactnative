@@ -15,13 +15,15 @@ import {
   ReplayComponent,
   scoreComponent,
 } from './WatchStaticSubcomponents';
- 
+
+import Voice from 'react-native-voice';
 export interface WatchEndProps {}
 
 export interface WatchEndState {
   isListening: boolean;
   didMatch: boolean;
-  
+  voice: any;
+  isRecord: boolean;
 }
 
 export default class WatchEnd extends React.Component<
@@ -34,17 +36,55 @@ export default class WatchEnd extends React.Component<
     this.state = {
       isListening: false,
       didMatch: null,
-      
+      voice: null,
+      isRecord: null,
     };
-  }
-   
 
-  
+    Voice.onSpeechStart = this._onSpeechStart;
+    Voice.onSpeechEnd = this._onSpeechEnd;
+    Voice.onSpeechResults = this._onSpeechResults;
+    Voice.onSpeechError = this._onSpeechError;
+  }
+
+  private _onSpeechStart = event => {
+    console.log('onSpeechStart');
+    this.setState({
+      voice: '',
+    });
+  };
+  private _onSpeechEnd = event => {
+    console.log('onSpeechEnd');
+    console.log(event);
+  };
+  private _onSpeechResults = event => {
+    this.setState({
+      voice: event.value[0],
+    });
+    console.log(this.state);
+  };
+  private _onSpeechError = event => {
+    console.log('_onSpeechError');
+  };
+
+  private _onRecordVoice = () => {
+    const {isRecord} = this.state;
+    if (isRecord) {
+      Voice.stop();
+    } else {
+      Voice.start('en-US');
+    }
+    this.setState({
+      isRecord: !isRecord,
+    });
+  };
 
   toggleListening = () => {
+    this._onRecordVoice();
+
     this.setState({
       isListening: !this.state.isListening,
     });
+
     
     setTimeout(() => {
       this.setState({
@@ -116,6 +156,12 @@ export default class WatchEnd extends React.Component<
     }
   };
 
+  componentDidMount(){
+   
+  }
+  componentWillUnmount() {
+    Voice.destroy().then(Voice.removeAllListeners);
+  }
   public render() {
     return (
       <View style={styles.container}>
