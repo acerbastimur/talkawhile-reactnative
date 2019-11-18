@@ -2,7 +2,7 @@ import { Playphrase, PhrasesItem } from "../../../models/Playphrase";
 import IContent from '../../../models/Content';
 import ContentStore from '../../../stores/ContentStore'
 export default class ContentProvider {
-    private content: IContent = ContentStore.content[1]; // ! will be removed mock data as selected category
+    private content: IContent = ContentStore.content[0]; // ! will be removed mock data as selected category
 
     constructor() {
     }

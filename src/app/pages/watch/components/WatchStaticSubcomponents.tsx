@@ -90,8 +90,11 @@ export class ReplayComponent extends React.Component {
     );
   }
 }
+export interface PassComponentProps {
+  stateCleaner:any
+}
 
-export class PassComponent extends React.Component {
+export class PassComponent extends React.Component<PassComponentProps,any> {
   state = {
     isLoading: false,
   };
@@ -109,6 +112,8 @@ export class PassComponent extends React.Component {
               ContentStore.getRandomContent();
               console.log('get random content');
               this.state.isLoading = true;
+              this.props.stateCleaner()
+
             }}>
             <View>
               <Image
@@ -134,10 +139,16 @@ export class PassComponent extends React.Component {
     );
   }
 }
-export class NextComponent extends React.Component {
+
+export interface NextComponentProps {
+  stateCleaner:any
+}
+
+export class NextComponent extends React.Component<NextComponentProps,any> {
   state = {
     isLoading: false,
   };
+ 
   render() {
     return (
       <View>
@@ -152,6 +163,7 @@ export class NextComponent extends React.Component {
               ContentStore.getRandomContent();
               console.log('get random content');
               this.state.isLoading = true;
+              this.props.stateCleaner()
             }}>
             <View>
               <Image

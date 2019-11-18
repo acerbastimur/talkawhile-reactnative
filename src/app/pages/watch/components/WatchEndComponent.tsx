@@ -15,14 +15,18 @@ import {
   ReplayComponent,
   scoreComponent,
 } from './WatchStaticSubcomponents';
-
+import {toJS} from 'mobx';
 import Voice from 'react-native-voice';
+import ContentStore from '../../../stores/ContentStore';
+import * as fuzball from 'fuzzball';
+
 export interface WatchEndProps {}
 
 export interface WatchEndState {
   isListening: boolean;
   didMatch: boolean;
-  voice: any;
+  voiceResult: string;
+  voiceResultRegisterDate: number;
   isRecord: boolean;
 }
 
@@ -36,38 +40,71 @@ export default class WatchEnd extends React.Component<
     this.state = {
       isListening: false,
       didMatch: null,
-      voice: null,
+      voiceResult: null,
       isRecord: null,
+      voiceResultRegisterDate: null,
     };
 
     Voice.onSpeechStart = this._onSpeechStart;
     Voice.onSpeechEnd = this._onSpeechEnd;
-    Voice.onSpeechResults = this._onSpeechResults;
+    Voice.onSpeechPartialResults = this._onSpeechResults;
     Voice.onSpeechError = this._onSpeechError;
   }
 
   private _onSpeechStart = event => {
     console.log('onSpeechStart');
     this.setState({
-      voice: '',
+      voiceResult: '',
+      voiceResultRegisterDate: Date.now(),
     });
+
+  /*   setTimeout(() => {
+        if (this.state.voiceResult == '') {
+        console.log('out of time');
+        this._onRecordVoice();
+
+        this.setState({
+          isListening: !this.state.isListening,
+        });
+      }
+    }, 2000); */
   };
   private _onSpeechEnd = event => {
     console.log('onSpeechEnd');
-    console.log(event);
   };
   private _onSpeechResults = event => {
     this.setState({
-      voice: event.value[0],
+      voiceResult: event.value[0],
+      voiceResultRegisterDate: Date.now(),
     });
-    console.log(this.state);
+    console.log('results are updated');
+
+    setTimeout(() => {
+      var seconds = (Date.now() - this.state.voiceResultRegisterDate) / 1000;
+
+      if (seconds > 2) {
+        console.log('out of time');
+        this._onRecordVoice();
+        const copyCurrentPhraseText = toJS(ContentStore.currentPhrase.text);
+        let similatiry = fuzball.ratio(
+          this.state.voiceResult,
+          copyCurrentPhraseText,
+        );
+        console.log(`Similarity is ${similatiry}`);
+        this.setState({
+          isListening: !this.state.isListening,
+          didMatch: similatiry > 93 ? true : false,
+        });
+      }
+    }, 2000);
   };
   private _onSpeechError = event => {
     console.log('_onSpeechError');
+    this.stateCleaner()
   };
 
   private _onRecordVoice = () => {
-    const {isRecord} = this.state;
+     const {isRecord} = this.state;
     if (isRecord) {
       Voice.stop();
     } else {
@@ -78,28 +115,32 @@ export default class WatchEnd extends React.Component<
     });
   };
 
+  stateCleaner = () => {
+    console.log("STATES CLEANED")
+    this.setState({
+      isListening: false,
+      didMatch: null,
+      voiceResult: null,
+      isRecord: null,
+      voiceResultRegisterDate: null,
+    });
+    Voice.stop();
+
+  }
   toggleListening = () => {
     this._onRecordVoice();
 
     this.setState({
       isListening: !this.state.isListening,
     });
-
-    
-    setTimeout(() => {
-      this.setState({
-        isListening: !this.state.isListening,
-        didMatch: true,
-      });
-    }, 2000);
   };
 
-  correctAnswerComponentContainerRight = () => {
+  answerResultComponentContainerRight = () => {
     if (this.state.isListening) {
       return scoreComponent();
     } else {
       if (this.state.didMatch === true) {
-        return <NextComponent />;
+        return <NextComponent stateCleaner={this.stateCleaner} />;
       } else if (this.state.didMatch === false) {
         return <ReplayComponent />;
       }
@@ -107,18 +148,17 @@ export default class WatchEnd extends React.Component<
     }
   };
 
-  correctAnswerComponentContainerMid = () => {
+  answerResultComponentContainerMid = () => {
     if (this.state.isListening) {
       return (
-        <TouchableOpacity
-          onPress={this.toggleListening}
-          style={{justifyContent: 'center', alignItems: 'center'}}>
+        <View
+           style={{justifyContent: 'center', alignItems: 'center'}}>
           <Image
             source={require('../../../../assets/images/watch/stop.png')}
             style={{width: 150, height: 150}}
           />
           {bottomButtonText('Listening...')}
-        </TouchableOpacity>
+        </View>
       );
     } else {
       if (this.state.didMatch === true) {
@@ -156,9 +196,7 @@ export default class WatchEnd extends React.Component<
     }
   };
 
-  componentDidMount(){
-   
-  }
+  componentDidMount() {}
   componentWillUnmount() {
     Voice.destroy().then(Voice.removeAllListeners);
   }
@@ -188,7 +226,7 @@ export default class WatchEnd extends React.Component<
               alignItems: 'center',
             }}>
             {!this.state.isListening && this.state.didMatch === false ? (
-              <PassComponent />
+              <PassComponent stateCleaner={this.stateCleaner} />
             ) : (
               wordComponent()
             )}
@@ -200,7 +238,7 @@ export default class WatchEnd extends React.Component<
               alignItems: 'center',
             }}>
             <View style={{flexDirection: 'column', alignItems: 'center'}}>
-              {this.correctAnswerComponentContainerMid()}
+              {this.answerResultComponentContainerMid()}
             </View>
           </View>
           <View
@@ -209,7 +247,7 @@ export default class WatchEnd extends React.Component<
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            {this.correctAnswerComponentContainerRight()}
+            {this.answerResultComponentContainerRight()}
           </View>
         </View>
       </View>
