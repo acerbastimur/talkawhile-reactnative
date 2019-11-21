@@ -9,17 +9,19 @@ export default class ContentProvider {
 
     async  getDataFromApi(word: string): Promise<Playphrase> {
         let response = await fetch(`https://www.playphrase.me/api/v1/phrases/search?q=${word}`)
-        let data = await response.json()
+        let data:Playphrase = await response.json()
         return data;
     }
 
     public async getAllWordsContents(): Promise<PhrasesItem[]> {
         const allWordsContent = this.content.wordList.map(async (word, index) => {
-          const currentWord: string = this.content.wordList[index];
+           const currentWord: string = this.content.wordList[index];
           const contents: Playphrase = await this.getDataFromApi(
             currentWord,
           );
-    
+           contents.phrases.forEach(element => {
+             element.word = word;
+           });
           return contents.phrases;
         });
     

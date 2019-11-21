@@ -23,7 +23,7 @@ export const wordComponent = () => {
           fontFamily: 'Exo-Bold',
           fontSize: 24,
         }}>
-        care
+        {ContentStore.currentPhrase.word}
       </Text>
     </View>
   );
@@ -79,7 +79,7 @@ export class ReplayComponent extends React.Component {
                   fontFamily: 'Exo-Bold',
                   fontSize: 24,
                   marginTop: 12,
-                  textAlign:"center"
+                  textAlign: 'center',
                 }}>
                 Replay
               </Text>
@@ -91,10 +91,10 @@ export class ReplayComponent extends React.Component {
   }
 }
 export interface PassComponentProps {
-  stateCleaner:any
+  stateCleaner: any;
 }
 
-export class PassComponent extends React.Component<PassComponentProps,any> {
+export class PassComponent extends React.Component<PassComponentProps, any> {
   state = {
     isLoading: false,
   };
@@ -109,11 +109,12 @@ export class PassComponent extends React.Component<PassComponentProps,any> {
           <TouchableOpacity
             style={{flexDirection: 'column', alignItems: 'center'}}
             onPress={() => {
+              this.props.stateCleaner();
               ContentStore.getRandomContent();
               console.log('get random content');
-              this.state.isLoading = true;
-              this.props.stateCleaner()
-
+              this.setState({
+                isLoading: true,
+              });
             }}>
             <View>
               <Image
@@ -127,8 +128,7 @@ export class PassComponent extends React.Component<PassComponentProps,any> {
                   fontFamily: 'Exo-Bold',
                   fontSize: 24,
                   marginTop: 12,
-                  textAlign:"center"
-
+                  textAlign: 'center',
                 }}>
                 Pass
               </Text>
@@ -141,14 +141,14 @@ export class PassComponent extends React.Component<PassComponentProps,any> {
 }
 
 export interface NextComponentProps {
-  stateCleaner:any
+  stateCleaner: any;
 }
 
-export class NextComponent extends React.Component<NextComponentProps,any> {
+export class NextComponent extends React.Component<NextComponentProps, any> {
   state = {
     isLoading: false,
   };
- 
+
   render() {
     return (
       <View>
@@ -163,7 +163,7 @@ export class NextComponent extends React.Component<NextComponentProps,any> {
               ContentStore.getRandomContent();
               console.log('get random content');
               this.state.isLoading = true;
-              this.props.stateCleaner()
+              this.props.stateCleaner();
             }}>
             <View>
               <Image

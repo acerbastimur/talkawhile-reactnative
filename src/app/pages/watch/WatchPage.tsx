@@ -71,13 +71,20 @@ export default class WatchComponent extends React.Component<
           }}
           ref={(ref: any) => {
             this.player = ref;
+            ContentStore.playerInstance = ref;
           }}
           resizeMode={'cover'}
           style={styles.backgroundVideo}
           pasued={this.state.player_paused}
+          onLoadStart = {()=> {
+            console.log("STARTED TO LOAD THE VIDEO");
+            ContentStore.toggleTalkDialog(false);
+
+          }}
           onLoad={() => {
             ContentStore.toggleTalkDialog(false);
           }}
+          
           onEnd={() => {
             ContentStore.toggleTalkDialog(true);
             this.setState({player_paused: true});

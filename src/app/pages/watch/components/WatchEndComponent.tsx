@@ -35,6 +35,7 @@ export default class WatchEnd extends React.Component<
   WatchEndState
 > {
   public static defaultProps = {};
+  TIME_OUT = 2000;
   constructor(props: WatchEndProps) {
     super(props);
     this.state = {
@@ -53,13 +54,15 @@ export default class WatchEnd extends React.Component<
 
   private _onSpeechStart = event => {
     console.log('onSpeechStart');
+
     this.setState({
       voiceResult: '',
-      voiceResultRegisterDate: Date.now(),
+      voiceResultRegisterDate: 0,
     });
 
-  /*   setTimeout(() => {
-        if (this.state.voiceResult == '') {
+    setTimeout(() => {
+      console.log(this.state)
+        if (this.state.voiceResult == "") {
         console.log('out of time');
         this._onRecordVoice();
 
@@ -67,7 +70,7 @@ export default class WatchEnd extends React.Component<
           isListening: !this.state.isListening,
         });
       }
-    }, 2000); */
+    }, this.TIME_OUT * 2);
   };
   private _onSpeechEnd = event => {
     console.log('onSpeechEnd');
@@ -82,24 +85,28 @@ export default class WatchEnd extends React.Component<
     setTimeout(() => {
       var seconds = (Date.now() - this.state.voiceResultRegisterDate) / 1000;
 
-      if (seconds > 2) {
+      if (seconds > this.TIME_OUT / 1000) {
         console.log('out of time');
-        this._onRecordVoice();
+        Voice.destroy();
         const copyCurrentPhraseText = toJS(ContentStore.currentPhrase.text);
         let similatiry = fuzball.ratio(
           this.state.voiceResult,
           copyCurrentPhraseText,
         );
-        console.log(`Similarity is ${similatiry}`);
+        console.log(`Similarity is ${similatiry}, you said : ${this.state.voiceResult}`);
         this.setState({
           isListening: !this.state.isListening,
-          didMatch: similatiry > 93 ? true : false,
+          didMatch: similatiry >= 92 ? true : false,
         });
       }
-    }, 2000);
+    }, this.TIME_OUT);
   };
   private _onSpeechError = event => {
-    console.log('_onSpeechError');
+    console.log('_onSpeechError',event);
+    if(event.error.message == "Speech recognition already started!") {
+      Voice.destroy().then(Voice.removeAllListeners);
+
+    }
     this.stateCleaner()
   };
 
@@ -109,7 +116,7 @@ export default class WatchEnd extends React.Component<
       Voice.stop();
     } else {
       Voice.start('en-US');
-    }
+    } 
     this.setState({
       isRecord: !isRecord,
     });
@@ -195,6 +202,10 @@ export default class WatchEnd extends React.Component<
       );
     }
   };
+
+  hideComponent = () => {
+
+  }
 
   componentDidMount() {}
   componentWillUnmount() {
