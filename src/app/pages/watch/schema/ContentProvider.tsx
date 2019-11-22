@@ -11,8 +11,10 @@ export default class ContentProvider {
     }
 
     async  getDataFromApi(word: string): Promise<Playphrase> {
-        let response = await fetch(`https://www.playphrase.me/api/v1/phrases/search?q=${word}`)
+        let response = await fetch(`http://www.playphrase.me/api/v1/phrases/search?q=${word}`)
         let data:Playphrase = await response.json()
+        console.log(data);
+        
         return data;
     }
 
