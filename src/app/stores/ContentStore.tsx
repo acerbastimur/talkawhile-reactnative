@@ -10,6 +10,7 @@ class ContentStore {
   @observable currentPhrase: PhrasesItem = null;
   @observable showTalkDialog = false;
   @observable playerInstance = null;
+  
   constructor() {
     console.log('content store initialized');
     this.content = data;

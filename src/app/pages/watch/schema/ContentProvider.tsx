@@ -1,10 +1,13 @@
 import { Playphrase, PhrasesItem } from "../../../models/Playphrase";
 import IContent from '../../../models/Content';
 import ContentStore from '../../../stores/ContentStore'
+import {toJS} from 'mobx'
+import ModalStore from "../../../stores/ModalStore";
 export default class ContentProvider {
-    private content: IContent = ContentStore.content[0]; // ! will be removed mock data as selected category
+    private content: IContent = ContentStore.content[ModalStore.selectedCardIndex]; // ! will be removed mock data as selected category
 
     constructor() {
+      console.log("Content store " , toJS(this.content))
     }
 
     async  getDataFromApi(word: string): Promise<Playphrase> {

@@ -2,8 +2,11 @@ import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import TabBar from './TabBar';
 import LearnPage from './Learn Page/LearnPage';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 
 export interface TabPageProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+
 }
 
 export default class TabPage extends React.PureComponent<TabPageProps, any> {
@@ -28,7 +31,7 @@ export default class TabPage extends React.PureComponent<TabPageProps, any> {
           selectedIcon={require('../../../assets/images/tabs/talk.png')}
           title="Tab2"
         >
-          <LearnPage />
+          <LearnPage navigation={this.props.navigation} />
 
         </TabBar.Item>
         <TabBar.Item
