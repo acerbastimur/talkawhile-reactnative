@@ -38,7 +38,7 @@ const AppNavigator = createSwitchNavigator(
       screen: WatchComponent
     }
   }, {
-  initialRouteName: "Watch",
+  initialRouteName: "Tabs",
 });
 
 const AppContainer = createAppContainer(AppNavigator);

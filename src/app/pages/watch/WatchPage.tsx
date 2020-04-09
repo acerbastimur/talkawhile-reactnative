@@ -10,58 +10,41 @@ import {
 import Video from 'react-native-video';
 import Orientation from 'react-native-orientation-locker';
 import Subtitle from './components/SubtitleComponent';
-import Watch from './components/WatchComponent';
 import ContentProvider from './schema/ContentProvider';
 import {Playphrase, PhrasesItem} from '../../models/Playphrase';
+import WatchEnd from './components/WatchEndComponent';
+import ContentStore from '../../stores/ContentStore';
+import {observer} from 'mobx-react';
 
 export interface WatchProps {}
 
 export interface WatchState {
-  showTalkDiaglog: boolean;
   areContentsLoaded: boolean;
-  contents: PhrasesItem[];
   player_paused: boolean;
 }
-
+@observer
 export default class WatchComponent extends React.Component<
   WatchProps,
   WatchState
 > {
   player: any;
-  contentProvider = new ContentProvider();
-  currentContent: PhrasesItem = null;
   constructor(props: WatchProps) {
     super(props);
     this.state = {
-      showTalkDiaglog: false,
       areContentsLoaded: false,
-      contents: null,
       player_paused: false,
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     Orientation.lockToLandscapeLeft();
     console.log('mount');
-
-    this.contentProvider.getAllWordsContents().then(allContent => {
-      this.setState({
-        contents: allContent,
-      });
-    }).then(()=> {
-      this.getRandomContent()
-      this.setState({
-                areContentsLoaded: true,
-      })
-    })
+    await ContentStore.getAllPhrases();
+    ContentStore.getRandomContent();
+    this.setState({
+      areContentsLoaded: true,
+    });
   }
-
-  getRandomContent = () => {
-    this.currentContent = null; // to remove old value
-    const contents = this.state.contents;
-    const randomContent = contents[Math.floor(Math.random() * contents.length)];
-    this.currentContent = randomContent;
-  };
 
   componentWillUnmount() {
     Orientation.lockToPortrait();
@@ -81,17 +64,31 @@ export default class WatchComponent extends React.Component<
           />
         </TouchableOpacity>
         <Video
-          source={{uri: this.currentContent['video-url']}}
+          source={{
+            uri:
+              ContentStore.currentPhrase &&
+              ContentStore.currentPhrase['video-url'],
+          }}
           ref={(ref: any) => {
             this.player = ref;
+            ContentStore.playerInstance = ref;
           }}
           resizeMode={'cover'}
           style={styles.backgroundVideo}
           pasued={this.state.player_paused}
+          onLoadStart = {()=> {
+            console.log("STARTED TO LOAD THE VIDEO");
+            ContentStore.toggleTalkDialog(false);
+
+          }}
+          onLoad={() => {
+            ContentStore.toggleTalkDialog(false);
+          }}
+          
           onEnd={() => {
-            this.setState({showTalkDiaglog: true, player_paused: true});
+            ContentStore.toggleTalkDialog(true);
+            this.setState({player_paused: true});
             console.log(this.state);
-            
           }}
         />
         <View
@@ -104,9 +101,13 @@ export default class WatchComponent extends React.Component<
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Subtitle subtitle={this.currentContent.text} />
+          <Subtitle
+            subtitle={
+              ContentStore.currentPhrase && ContentStore.currentPhrase.text
+            }
+          />
         </View>
-        {this.state.showTalkDiaglog ? (
+        {ContentStore.showTalkDialog ? (
           <View
             style={{
               zIndex: 5,
@@ -116,7 +117,7 @@ export default class WatchComponent extends React.Component<
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            {}
+            <WatchEnd />
           </View>
         ) : null}
       </View>

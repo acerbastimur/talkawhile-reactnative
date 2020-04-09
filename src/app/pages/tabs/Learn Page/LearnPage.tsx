@@ -9,9 +9,12 @@ import ContentStore from '../../../stores/ContentStore';
 import { observer } from 'mobx-react';
 import RBSheet from "react-native-raw-bottom-sheet";
 import SemiModalContainer from '../../../common-components/SemiModalContainer';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 
 
 export interface LearnPageProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+
 }
 @observer
 export default class LearnPage extends React.PureComponent<LearnPageProps, any> {
@@ -56,15 +59,16 @@ export default class LearnPage extends React.PureComponent<LearnPageProps, any> 
   public render() {
     return (
       <View style={LearnStyles.pageContainer}>
-        <SemiModalContainer />
+        <SemiModalContainer navigation={this.props.navigation} />
         <Header />
         <FlatList
           data={ContentStore.content}
-          renderItem={({ item }) => (
+          renderItem={({ item ,index }) => (
             <TouchableOpacity onPress={() => {
-              console.log("touceh");
+              console.log("touceh" , index);
               ModalStore.setCard(item);
               ModalStore.openModal();
+              ModalStore.selectedCardIndex = index;
 
             }}>
               <LearningCard cardImage={item.img} cardName={item.categoryName} />

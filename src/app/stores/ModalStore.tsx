@@ -5,6 +5,8 @@ class ModalStore {
   @observable isModalActive: boolean = false;
   @observable selectedCardDetails: IContent = null;
   @observable modalRef = null;
+  @observable selectedCardIndex = null;
+
   constructor() {
     console.log("store initialized");
 
@@ -14,6 +16,7 @@ class ModalStore {
   @action setCard(card: IContent) {
     this.selectedCardDetails = card;
   }
+  
 
   @action openModal() {
     console.log("open modal");

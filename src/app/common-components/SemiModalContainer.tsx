@@ -4,7 +4,10 @@ import SemiModal from './SemiModal';
 import { observer } from 'mobx-react'
 import ModalStore from '../stores/ModalStore';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import { NavigationState, NavigationParams, NavigationScreenProp } from 'react-navigation';
 export interface SemiModalContainerProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+
 }
 @observer
 export default class SemiModalContainer extends React.PureComponent<SemiModalContainerProps, any> {
@@ -56,7 +59,12 @@ export default class SemiModalContainer extends React.PureComponent<SemiModalCon
               </View>
             </View>
             <View style={{ flex: 0.25 }}>
-              <TouchableOpacity style={{ flexDirection: "column", alignItems: "center", }}>
+              <TouchableOpacity style={{ flexDirection: "column", alignItems: "center", }}
+              onPress={
+                ()=> {
+                this.props.navigation.navigate("Watch")
+                }
+              }>
                 <Image style={{ width: 60, height: 60, borderRadius: 100 }}
                   source={require('../../assets/images/learn/speak.png')} />
               </TouchableOpacity>

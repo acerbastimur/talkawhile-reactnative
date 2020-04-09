@@ -9,6 +9,7 @@ export interface PhrasesItem {
         info: string;
         imdb: string;
     };
+    word?:string;
     words: WordsItem[];
     start: number;
     'video-url': string;
